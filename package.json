@@ -1,0 +1,73 @@
+{
+  "name": "streamer-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "bin": {
+    "pkg": "dist/main.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": " cross-env NODE_ENV=production webpack -c apps/server/webpack.config.js && cross-env NODE_ENV=production webpack -c apps/webapp/webpack.config.js",
+    "run": "node dist/main",
+    "package": "node scripts/package.js",
+    "start:dev": "node scripts/dev.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^17.0.18",
+    "axios": "^0.26.0",
+    "cookie-parser": "^1.4.6",
+    "cuid": "^2.1.8",
+    "express": "^4.17.3",
+    "ffmpeg-static": "^4.4.1",
+    "ffprobe-static": "^3.0.0",
+    "simple-peer": "^9.11.1",
+    "tunnelr": "^1.0.13",
+    "wrtc": "^0.4.7"
+  },
+  "devDependencies": {
+    "@types/cloneable-readable": "^2.0.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.13",
+    "@types/fluent-ffmpeg": "^2.1.20",
+    "@types/simple-peer": "^9.11.4",
+    "@types/webpack-env": "^1.16.3",
+    "7zip-bin": "^5.1.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "colors": "^1.4.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.6.0",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "node-loader": "^2.0.0",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "node-pre-gyp": "^0.17.0",
+    "nodemon": "^2.0.15",
+    "postcss-loader": "^6.2.1",
+    "process": "^0.11.10",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^12.6.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-middleware": "^5.3.1",
+    "webpack-hot-middleware": "^2.25.1",
+    "webpack-messages": "^2.0.4",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "pkg": {
+    "assets": [
+      "dist/**/*",
+      "node_modules/**/*.node"
+    ],
+    "targets": [
+      "node16"
+    ]
+  }
+}
