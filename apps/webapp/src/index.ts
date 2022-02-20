@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import Peer from "simple-peer";
 import axios from "axios";
 

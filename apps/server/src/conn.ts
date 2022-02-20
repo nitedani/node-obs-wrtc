@@ -40,6 +40,7 @@ export class Connection extends Peer {
   id: string;
   remoteStream = null;
   signalBuffer: any[] = [];
+  timeout: NodeJS.Timeout;
 
   constructor({ id, bitrate }) {
     super({
@@ -79,6 +80,13 @@ export class Connection extends Peer {
     });
 
     this.addListener("error", (err) => {});
+  }
+
+  onDisconnect() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.destroy();
+    }, 5000);
   }
 
   connectTo(other: Connection) {

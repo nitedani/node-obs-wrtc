@@ -26,7 +26,11 @@ const ffmpegPath = join(__dirname, _ffmpegPath);
 
   const connectionManager = new WebRTCConnectionManager();
 
-  const room = haiku(2);
+  const randomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const room = haiku(randomInt(1, 1000));
   const provider = "0.tunnelr.co";
 
   const videoSource = new WRTC.nonstandard.RTCVideoSource({
@@ -51,7 +55,6 @@ const ffmpegPath = join(__dirname, _ffmpegPath);
           "-re",
           "-i",
           `udp://127.0.0.1:1234`,
-
           "-c:v",
           "copy",
           "-c:a",
@@ -221,6 +224,10 @@ const ffmpegPath = join(__dirname, _ffmpegPath);
       while (!conn.signalBuffer.length) {
         await new Promise((r) => setTimeout(r, 10));
       }
+
+      req.on("close", () => {
+        conn.onDisconnect();
+      });
 
       res.json(conn.signalBuffer);
       conn.signalBuffer = [];
